@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+ 
+ 
+    <div class="flex items- gap-4 text-[#111518]">
+        <div class="size-4">
+        </div>
+        <h2 class="text-[#111518] text-lg font-bold leading-tight tracking-[-0.015em]">Kolping Climate</h2>
+      </div>
+ 
+ 
+ 
+   
+</title>
+<link rel="stylesheet" href="styles.css">
+ 
+<style>
+    /* Allgemeines Styling */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        color: white;
+        overflow-y: auto; /* Scrollen ermöglichen */
+        overflow-x: hidden; /* Kein horizontales Scrollen */
+    }
+ 
+    /* Video-Hintergrund */
+    .video-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        object-fit: cover;
+    }
+ 
+    /* Header */
+    .header {
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+ 
+    .header h1 {
+        margin: 0;
+        font-size: 2.5em;
+    }
+ 
+    /* Wetter-Info-Bereich */
+    .weather-info {
+        margin: 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+ 
+    .weather-card {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+ 
+    /* Diagrammcontainer leicht transparent */
+    .chart-container {
+        width: 80%;
+        margin: 30px auto;
+        background-color: rgba(255, 255, 255, 0.9); /* Leichte Transparenz */
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Schatten für Tiefe */
+        color: black; /* Textfarbe */
+    }
+ 
+    .chart-container h2 {
+        margin: 0 0 20px;
+        color: black;
+    }
+</style>
+</head>
+<body>
+ 
+ 
+   
+ 
+ 
+<!-- Video-Hintergrund -->
+<video class="video-background" autoplay muted loop>
+<source src="background-video.mp4" type="video/mp4">
+    Dein Browser unterstützt keine Videos.
+</video>
+ 
+<!-- Header -->
+<div class="header">
+ 
+ 
+    <div class="flex items-left gap-4 text-[#111518]">
+        <div class="size-4">
+        </div>
+        <h1> Kolping Climate</h1>
+      </div>
+<h2>Wetter in Heilbronn</h2>
+<p>Teilweise bewölkt</p>
+</div>
+ 
+<!-- Wetter-Info -->
+<div class="weather-info">
+<div class="weather-card">
+<h2>Aktuelle Temperatur</h2>
+<p>20&deg;C</p>
+</div>
+<div class="weather-card">
+<h2>Luftdruck</h2>
+<p>1017 mb</p>
+</div>
+<div class="weather-card">
+<h2>Lokale Zeit</h2>
+<p>07:49</p>
+</div>
+</div>
+ 
+<!-- Diagrammcontainer -->
+<div class="chart-container">
+<h2>Temperaturänderungen</h2>
+<canvas id="tempChart"></canvas>
+</div>
+ 
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('tempChart').getContext('2d');
+    const tempChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['06:00', '09:00', '12:00', '15:00', '18:00', '21:00'],
+            datasets: [{
+                label: 'Temperatur (°C)',
+                data: [18, 20, 22, 21, 19, 17],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top'
+                },
+                title: {
+                    display: true,
+                    text: 'Temperaturverlauf des Tages'
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
